@@ -2,6 +2,10 @@ import pygame
 
 #initialisation de pygame
 pygame.init()
+# class de notre jeu
+class Jeu:
+    def __init__(self):
+        self.cannon = Cannon()
 #Class Canon
 class Cannon(pygame.sprite.Sprite):
     def __init__(self):
@@ -22,7 +26,7 @@ background = pygame.image.load("assets/desert.png")
 icone = pygame.image.load("assets/crabe.png")
 
 #On importe notre canon
-cannon = Cannon()
+jeu = Jeu()
 
 while running:
     #Icone
@@ -30,7 +34,7 @@ while running:
     # appliquer l'image sur l'arrière plan du jeu
     screen.blit(background, (0,0))
     # appliquer l'image du cannon
-    screen.blit(cannon.image,cannon.rect)
+    screen.blit(jeu.cannon.image,jeu.cannon.rect)
     # mettre a jour l'écran
     pygame.display.flip()
 
