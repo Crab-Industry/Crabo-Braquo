@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 #titre et icône & creation écran
-pygame.display.set_caption("Crabo-Braquo") #possibilité de rajouté une icone dans la fenètre en mettant une virgule
+pygame.display.set_caption("Crabo-Braquo")
 icon = pygame.image.load("assets/crabe.png")
 pygame.display.set_icon(icon)
 
@@ -14,6 +14,10 @@ running = True
 # importer un fond d'écran
 background = pygame.image.load("assets/desert.png")
 
+# class de notre jeu
+class Jeu:
+    def __init__(self):
+        self.cannon = Cannon()
 
 #Class Canon
 class Cannon(pygame.sprite.Sprite):
@@ -26,7 +30,7 @@ class Cannon(pygame.sprite.Sprite):
         self.rect.y=140
 
 #On importe notre canon
-cannon = Cannon()
+jeu = Jeu()
 
 
 
@@ -38,7 +42,7 @@ while running:
     screen.blit(background, (0,0))
 
     # appliquer l'image du cannon
-    screen.blit(cannon.image, cannon.rect)
+    screen.blit(jeu.cannon.image, jeu.cannon.rect)
 
     # mettre a jour l'écran
     pygame.display.flip()
