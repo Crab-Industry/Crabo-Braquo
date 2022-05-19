@@ -1,50 +1,45 @@
 import pygame
 from jeu import Jeu
-#initialisation de pygame
+
+# initialisation de pygame
 pygame.init()
 # class de notre jeu
 
-#creation écran
-pygame.display.set_caption("Crabo-Braquo") #possibilité de rajouté une icone dans la fenètre en mettant une virgule
-screen = pygame.display.set_mode((1000,394))
-
+# creation écran
+pygame.display.set_caption("Crabo-Braquo")  # possibilité de rajouté une icone dans la fenètre en mettant une virgule
+screen = pygame.display.set_mode((1000, 394))
 
 # importer un fond d'écran
 image_fond = pygame.image.load("assets/desert.jpg")
 icone = pygame.image.load("assets/crabe.png")
 
-
 # On charge la class jeu
 jeu = Jeu()
 
-
-
 running = True
 while running:
-    #Icone
+    # Icone
     pygame.display.set_icon(icone)
 
     # appliquer l'image sur l'arrière plan du jeu
-    screen.blit(image_fond, (0,0))
+    screen.blit(image_fond, (0, 0))
 
-    #appliquer l'image de lancement du jeu le bouton start aussi
-    image_start=pygame.image.load("assets/CraboBraquo.png")
+    # appliquer l'image de lancement du jeu le bouton start aussi
+    image_start = pygame.image.load("assets/CraboBraquo.png")
     image_start = pygame.transform.scale(image_start, (800, 225))
 
-    start=pygame.image.load("assets/start.png")
-    start=pygame.transform.scale(start, (200, 200))
-    start_rectangle=start.get_rect()#on recupère le rectangle
-    #on utiliser pour savoir si on clique dessus
-    start_rectangle.x=(screen.get_width()/2.4)
-    start_rectangle.y=180
-
+    start = pygame.image.load("assets/start.png")
+    start = pygame.transform.scale(start, (200, 200))
+    start_rectangle = start.get_rect()  # on recupère le rectangle
+    # on utiliser pour savoir si on clique dessus
+    start_rectangle.x = (screen.get_width() / 2.4)
+    start_rectangle.y = 180
 
     if jeu.lancement:
         jeu.update(screen)
     else:
-        screen.blit(image_start,(screen.get_width()/8,30))
-        screen.blit(start,(start_rectangle.x,start_rectangle.y))
-
+        screen.blit(image_start, (screen.get_width() / 8, 30))
+        screen.blit(start, (start_rectangle.x, start_rectangle.y))
 
     # mettre a jour l'écran
     pygame.display.flip()
@@ -62,12 +57,7 @@ while running:
                 jeu.cannon.lancer_boulet()
         elif event.type == pygame.KEYUP:
             jeu.pressed[event.key] = False
-        #clique de souris
-        elif event.type==pygame.MOUSEBUTTONDOWN:
+        # clique de souris
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_rectangle.collidepoint(event.pos):
                 jeu.start_jeu()
-
-
-
-
-
