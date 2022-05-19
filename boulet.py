@@ -1,5 +1,5 @@
-import pygame
 import math
+import pygame
 
 
 # Class boulet
@@ -21,8 +21,8 @@ class Boulet(pygame.sprite.Sprite):
     def mouvement(self):
         g = 9.81
         self.rect.x -= 3
-        self.rect.y = ((g) / (2 * (self.velocite ** 2) * (math.cos(2.61) ** 2))) * ((self.rect.x) ** 2) + (
-                    math.tan(2.61) * (self.rect.x)) + 120
+        self.rect.y = (g / (2 * (self.velocite ** 2) * (math.cos(2.61) ** 2))) * (self.rect.x ** 2) + (
+                math.tan(2.61) * self.rect.x) + 120
         print(self.rect.y)
         print(self.rect.x)
 

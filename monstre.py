@@ -25,8 +25,8 @@ class Monstre(pygame.sprite.Sprite):
             self.jeu.muraille.degat_subit(self.attaque)
 
     def barre_de_vie(self, surface):
-        position = [self.rect.x - 4, self.rect.y - 10, (self.vie) / 2, 3]  # position en x,y la taille et la hauteur
-        position2 = [self.rect.x - 4, self.rect.y - 10, (self.max_vie) / 2, 3]
+        position = [self.rect.x - 4, self.rect.y - 10, self.vie / 2, 3]  # position en x,y la taille et la hauteur
+        position2 = [self.rect.x - 4, self.rect.y - 10, self.max_vie / 2, 3]
         pygame.draw.rect(surface, (115, 115, 115), position2)  # barre en arrière plan comme ça on voit la vie max
         pygame.draw.rect(surface, (122, 246, 18), position)  # barre principale
 

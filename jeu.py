@@ -1,9 +1,10 @@
 import pygame
+
+from boss import Boss
 from cannon import Cannon
+from event_boss import Event
 from monstre import Monstre
 from muraille import Muraille
-from event_boss import Event
-from boss import Boss
 
 
 class Jeu:

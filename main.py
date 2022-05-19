@@ -1,4 +1,5 @@
 import pygame
+
 from jeu import Jeu
 
 # initialisation de pygame

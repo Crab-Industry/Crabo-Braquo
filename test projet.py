@@ -1,6 +1,3 @@
-
-
-
 '''
 import pygame
 from cannon import Cannon
