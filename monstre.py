@@ -9,7 +9,7 @@ class Monstre(pygame.sprite.Sprite):
         self.attaque = 0.3
         self.vie = 100
         self.max_vie = 100
-        self.image = pygame.image.load("assets/boss_crabe.png")
+        self.image = pygame.image.load("assets/picture/boss_crabe.png")
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.rect.x = 1 - random.randint(0, 200)

@@ -6,7 +6,7 @@ class Muraille(pygame.sprite.Sprite):
         super().__init__()
         self.vie = 200
         self.max_vie = 200
-        self.image = pygame.image.load("assets/muraille.png")
+        self.image = pygame.image.load("assets/picture/muraille.png")
         self.image = pygame.transform.scale(self.image, (200, 200))
         self.rect = self.image.get_rect()
         self.rect.x = 15

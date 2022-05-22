@@ -8,7 +8,7 @@ class Boulet(pygame.sprite.Sprite):
     def __init__(self, cannon):
         self.cannon = cannon
         super().__init__()
-        self.image = pygame.image.load("assets/boulet.png")
+        self.image = pygame.image.load("assets/picture/boulet.png")
         self.image = pygame.transform.scale(self.image, (50, 50))
         self.rect = self.image.get_rect()
         self.rect.x = cannon.rect.x

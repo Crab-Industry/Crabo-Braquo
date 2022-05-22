@@ -12,8 +12,8 @@ pygame.display.set_caption("Crabo-Braquo")  # possibilité de rajouté une icone
 screen = pygame.display.set_mode((1000, 394))
 
 # importer un fond d'écran
-image_fond = pygame.image.load("assets/desert.jpg")
-icone = pygame.image.load("assets/crabe.png")
+image_fond = pygame.image.load("assets/picture/desert.jpg")
+icone = pygame.image.load("assets/picture/crabe.png")
 
 # On charge la class jeu
 jeu = Jeu()
@@ -27,10 +27,10 @@ while running:
     screen.blit(image_fond, (0, 0))
 
     # appliquer l'image de lancement du jeu le bouton start aussi
-    image_start = pygame.image.load("assets/CraboBraquo.png")
+    image_start = pygame.image.load("assets/picture/CraboBraquo.png")
     image_start = pygame.transform.scale(image_start, (800, 225))
 
-    start = pygame.image.load("assets/start.png")
+    start = pygame.image.load("assets/picture/start.png")
     start = pygame.transform.scale(start, (200, 200))
     start_rectangle = start.get_rect()  # on recupère le rectangle
     # on utiliser pour savoir si on clique dessus

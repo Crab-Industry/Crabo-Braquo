@@ -9,7 +9,7 @@ class Cannon(pygame.sprite.Sprite):
         super().__init__()
         self.attaque = 50
         self.velocite = 10
-        self.image = pygame.image.load("assets/cannon2.png")
+        self.image = pygame.image.load("assets/picture/cannon2.png")
         self.rect = self.image.get_rect()
         self.rect.x = 100
         self.rect.y = 120
