@@ -12,7 +12,7 @@ class Monstre(pygame.sprite.Sprite):
         self.image = pygame.image.load("assets/picture/boss_crabe.png")
         self.image = pygame.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
-        self.rect.x = 1 - random.randint(0, 200)
+        self.rect.x = 1001 - random.randint(0, 200)
         self.rect.y = 300
         self.velocite = random.randint(1, 3)
 
@@ -20,7 +20,7 @@ class Monstre(pygame.sprite.Sprite):
         # verification pour que le monstre ne puisse avancer
         # quand il entre en collision avec la muraille
         if not self.jeu.collision(self, self.jeu.all_murailles):
-            self.rect.x += self.velocite
+            self.rect.x -= self.velocite
         else:  # le monstre est devant la murailles, il va pouvoir faire des degats
             self.jeu.muraille.degat_subit(self.attaque)
 
