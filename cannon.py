@@ -22,13 +22,11 @@ class Cannon(pygame.sprite.Sprite):
         self.angle -= 0.5
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
-        print(self.angle)
 
     def rotate2(self):
         self.angle += 0.5
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
-        print(self.angle)
 
     def lancer_boulet(self):
         self.all_boulet.add(Boulet(self))

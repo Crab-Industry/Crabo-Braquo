@@ -12,7 +12,7 @@ class Boulet(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (50, 50))
         self.rect = self.image.get_rect()
         self.rect.x = cannon.rect.x
-        #on convertis l'angle de dégrés à radians
+        #on convertis l'angle de dégrés à radians, faut faire en sorte que ça fonctionne pour les nb négatifs aussi
         self.angle = float(self.cannon.angle) * math.pi / 180
         self.velocite = 100
 
