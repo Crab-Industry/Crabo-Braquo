@@ -33,7 +33,7 @@ class Jeu:
 
     def appariton_monstre(self):
         monstre = Monstre(self)
-        self.all_monstres.add(monstre)
+        #self.all_monstres.add(monstre)
 
     def collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
