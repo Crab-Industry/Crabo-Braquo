@@ -6,16 +6,17 @@ Folder: '/assets/sounds/*'
 import pygame
 
 
-class Sound:
-    def __int__(self):
-        self.sounds = {
-            'click': pygame.mixer.Sound("assets/sound/click.ogg"),
-            'canon': pygame.mixer.Sound("assets/sound/canon.ogg"),
-            'background_music': pygame.mixer.Sound("assets/sound/background_music.ogg")
+class Soundplayer:
+    def __init__(self):
+        self.son = {
+            "click": pygame.mixer.Sound("assets/sound/click.ogg"),
+            "canon": pygame.mixer.Sound("assets/sound/canon.ogg"),
+            "background_music": pygame.mixer.Sound("assets/sound/background_music.ogg")
         }
 
     def play_sound(self, track):
-        if track is 'background_music':
-            self.sounds[track].play(loops=-1)
+        if track == 'background_music':
+            self.son[track].set_volume(0.4)
+            self.son[track].play()
         else:
-            self.sounds[track].play()
+            self.son[track].play()
