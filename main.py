@@ -65,3 +65,8 @@ while running:
             if start_rectangle.collidepoint(event.pos) and jeu.lancement is False:
                 jeu.start_jeu()
                 jeu.sound_player.play_sound("click")
+
+        if event.type == pygame.USEREVENT + 1:
+            if jeu.lancement:
+                jeu.timer.update_time(screen)
+
