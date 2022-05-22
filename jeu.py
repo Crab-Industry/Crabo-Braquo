@@ -6,6 +6,7 @@ from event_boss import Event
 from monstre import Monstre
 from muraille import Muraille
 from sound import Soundplayer
+from timer import Timer
 
 
 class Jeu:
@@ -29,6 +30,8 @@ class Jeu:
         # self.all_boss=pygame.sprite.Group
         # Implémentatino de la classe son
         self.sound_player = Soundplayer()
+        # Timer
+        self.timer = Timer()
 
     # def apparition_boss(self):
     # boss = Boss(self)
@@ -36,7 +39,8 @@ class Jeu:
 
     def appariton_monstre(self):
         monstre = Monstre(self)
-        self.all_monstres.add(monstre)
+        for i in range(0, 3):
+            self.all_monstres.add(monstre)
 
     def collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
@@ -68,6 +72,10 @@ class Jeu:
         elif self.pressed.get(pygame.K_LEFT):
             self.cannon.rotate2()
 
+        font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
+        timer_text = font.render(f"Temps : {self.timer.counter}", 1, (0, 0, 0))
+        screen.blit(timer_text, (820, 20))
+
     def start_jeu(self):
         self.lancement = True
         self.appariton_monstre()
@@ -79,3 +87,4 @@ class Jeu:
         self.all_monstres = pygame.sprite.Group()
         self.muraille.vie = self.muraille.max_vie
         self.lancement = False
+        self.timer.reset_time()
