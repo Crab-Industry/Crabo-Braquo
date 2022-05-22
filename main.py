@@ -1,6 +1,5 @@
 import pygame
 
-import sound
 from jeu import Jeu
 
 # initialisation de pygame
