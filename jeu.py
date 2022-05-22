@@ -67,8 +67,7 @@ class Jeu:
 
     def start_jeu(self):
         self.lancement = True
-        # self.appariton_monstre()
-        # self.appariton_monstre()
+        self.appariton_monstre()
 
     def game_over(self):
         # on relance le jeu
