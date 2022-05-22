@@ -9,7 +9,7 @@ class Muraille(pygame.sprite.Sprite):
         self.image = pygame.image.load("assets/muraille.png")
         self.image = pygame.transform.scale(self.image, (200, 200))
         self.rect = self.image.get_rect()
-        self.rect.x = 700
+        self.rect.x = 15
         self.rect.y = 140
         self.jeu = jeu
 

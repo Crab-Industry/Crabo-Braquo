@@ -13,7 +13,7 @@ class Boulet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = cannon.rect.x
         #on convertis l'angle de dégrés à radians, faut faire en sorte que ça fonctionne pour les nb négatifs aussi
-        self.angle = float(self.cannon.angle) * math.pi / 180
+        self.angle = (self.cannon.angle_cannon * math.pi )/ 180 #self.cannon.angle_cannon
         self.velocite = 100
 
     def remove(self):
@@ -21,8 +21,10 @@ class Boulet(pygame.sprite.Sprite):
 
     def mouvement(self):
         g = 9.81
-        self.rect.x -= 3
-        self.rect.y = g / (2 * (self.velocite ** 2) * (math.cos(self.angle)) ** 2) * (self.rect.x ** 2) + (math.tan(self.angle) * self.rect.x) - 120
+        self.rect.x += 4
+        self.rect.y = g / (2 * (self.velocite ** 2) * (math.cos(self.angle)) ** 2) * (self.rect.x ** 2) + (math.tan(self.angle) * self.rect.x) + 120
+        print(self.rect.y)
+        print(self.angle)
 
 
         # supprimer le boulet quand il touche le monstre, infliger des dégats à tous les monstre
