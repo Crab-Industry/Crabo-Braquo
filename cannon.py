@@ -20,13 +20,13 @@ class Cannon(pygame.sprite.Sprite):
         self.angle_cannon = -35
 
     def rotate1(self):
-        self.angle -= 0.5
+        self.angle -= 1
         self.angle_cannon -= 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def rotate2(self):
-        self.angle += 0.5
+        self.angle += 1
         self.angle_cannon += 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
