@@ -1,5 +1,6 @@
 import pygame
 
+import sound
 from jeu import Jeu
 
 # initialisation de pygame
@@ -56,9 +57,11 @@ while running:
             # si la barre espace est appuyer on lance un boulet
             if event.key == pygame.K_SPACE:
                 jeu.cannon.lancer_boulet()
+                jeu.sound_player.play_sound("canon")
         elif event.type == pygame.KEYUP:
             jeu.pressed[event.key] = False
         # clique de souris
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_rectangle.collidepoint(event.pos):
                 jeu.start_jeu()
+                jeu.sound_player.play_sound("click")

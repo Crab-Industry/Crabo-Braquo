@@ -5,6 +5,7 @@ from cannon import Cannon
 from event_boss import Event
 from monstre import Monstre
 from muraille import Muraille
+from sound import Soundplayer
 
 
 class Jeu:
@@ -26,6 +27,8 @@ class Jeu:
         self.cannon = Cannon(self)
         self.event = Event()
         # self.all_boss=pygame.sprite.Group
+        # Implémentatino de la classe son
+        self.sound_player = Soundplayer()
 
     # def apparition_boss(self):
     # boss = Boss(self)
@@ -33,7 +36,7 @@ class Jeu:
 
     def appariton_monstre(self):
         monstre = Monstre(self)
-        #self.all_monstres.add(monstre)
+        self.all_monstres.add(monstre)
 
     def collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
@@ -68,6 +71,8 @@ class Jeu:
     def start_jeu(self):
         self.lancement = True
         self.appariton_monstre()
+        # Musique de fond
+        self.sound_player.play_sound('background_music')
 
     def game_over(self):
         # on relance le jeu
