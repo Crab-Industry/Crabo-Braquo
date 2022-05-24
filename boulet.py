@@ -23,8 +23,6 @@ class Boulet(pygame.sprite.Sprite):
         g = 9.81
         self.rect.x += 10
         self.rect.y = g / (2 * (self.velocite ** 2) * (math.cos(self.angle)) ** 2) * (self.rect.x ** 2) + (math.tan(self.angle) * self.rect.x) + 135
-        print(self.rect.y)
-        print(self.angle)
 
 
         # supprimer le boulet quand il touche le monstre, infliger des dégats à tous les monstre
