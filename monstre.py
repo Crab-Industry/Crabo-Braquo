@@ -37,4 +37,4 @@ class Monstre(pygame.sprite.Sprite):
             self.velocite = random.uniform(0.5, 2.0)
             self.vie = self.max_vie
             # on supprime le crabe quand il a plus de vie
-            # self.jeu.all_monstres.remove(self)
+            self.jeu.all_monstres.remove(self)
