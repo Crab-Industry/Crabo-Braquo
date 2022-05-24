@@ -11,23 +11,23 @@ class Cannon(pygame.sprite.Sprite):
         self.velocite = 10
         self.image = pygame.image.load("assets/picture/cannon2.png")
         self.rect = self.image.get_rect()
-        self.rect.x = 100
+        self.rect.x = 140
         self.rect.y = 120
         self.origin_image = self.image
         self.angle = 0
         self.all_boulet = pygame.sprite.Group()
         self.jeu = jeu
-        self.angle_cannon = -35
+        self.angle_cannon = -20
 
     def rotate1(self):
         self.angle -= 1
-        self.angle_cannon -= 1
+        self.angle_cannon += 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def rotate2(self):
         self.angle += 1
-        self.angle_cannon += 1
+        self.angle_cannon -= 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
