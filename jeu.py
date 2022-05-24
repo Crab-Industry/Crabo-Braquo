@@ -35,6 +35,14 @@ class Jeu:
         # Timer
         self.timer = Timer()
 
+        self.reprendre = pygame.image.load("assets/picture/reprendre.png")
+        self.reprendre = pygame.transform.scale(self.reprendre, (331, 101))
+        self.reprendre_rectangle = self.reprendre.get_rect()
+
+        self.quitter = pygame.image.load("assets/picture/quitter.png")
+        self.quitter = pygame.transform.scale(self.quitter, (331, 101))
+        self.quitter_rectangle = self.quitter.get_rect()
+
     # def apparition_boss(self):
     # boss = Boss(self)
     # self.all_boss.add(boss)
@@ -80,7 +88,7 @@ class Jeu:
 
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
         timer_text = font.render(f"Temps : {self.timer.counter}", 1, (0, 0, 0))
-        screen.blit(timer_text, (820, 20))
+        screen.blit(timer_text, (780, 20))
 
     def start_jeu(self):
         self.lancement = True
@@ -88,7 +96,10 @@ class Jeu:
         # Musique de fond
         self.sound_player.play_sound('background_music')
 
-    def game_over(self):
+    def game_over(self, end_game_from_game):
+        if end_game_from_game:
+            pass  # implémenter l'image de game over
+
         # on relance le jeu
         self.all_monstres = pygame.sprite.Group()
         self.muraille.vie = self.muraille.max_vie
@@ -100,8 +111,19 @@ class Jeu:
         self.pause = True
         self.sound_player.pause_sound()
 
-    def pause_update(self):
-        pass
+    def pause_update(self, screen):
+        self.reprendre_rectangle.x = (screen.get_width() / 2.85)  # on utiliser pour savoir si on clique dessus
+        self.reprendre_rectangle.y = (screen.get_height() / 4)
+
+        self.quitter_rectangle.x = (screen.get_width() / 2.85)  # on utiliser pour savoir si on clique dessus
+        self.quitter_rectangle.y = (screen.get_height() / 1.75)
+
+        screen.blit(self.reprendre, (self.reprendre_rectangle.x, self.reprendre_rectangle.y))
+        screen.blit(self.quitter, (self.quitter_rectangle.x, self.quitter_rectangle.y))
+
+        font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
+        timer_text = font.render(f"Temps actuel : {self.timer.counter}", True, (0, 0, 0))
+        screen.blit(timer_text, (screen.get_width() / 2.85, (screen.get_height() / 6.5)))
 
     def pause_out(self):
         self.pause = False
