@@ -23,7 +23,7 @@ class Monstre(pygame.sprite.Sprite):
         self.attaque: dégâts d'attaque du crabe
         self.vie: HP du crabe
         self.max_vie: HP_max du crabe
-        self.image: Image de la muraille, puis transformée en dimension 40*40
+        self.image: Image du crabe, puis transformée en dimension 40*40
         self.rect: masque_rectangle du crabe
         self.rect.x: position x
         self.rect.y: position y
