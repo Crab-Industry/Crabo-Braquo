@@ -36,14 +36,20 @@ while running:
     start = pygame.image.load("assets/picture/start2.png")
     start = pygame.transform.scale(start, (265, 81))
     start_rectangle = start.get_rect()  # on recupère le rectangle
-    start_rectangle.x = (screen.get_width() / 5)    # on utiliser pour savoir si on clique dessus
+    start_rectangle.x = (screen.get_width() / 9)    # on utiliser pour savoir si on clique dessus
     start_rectangle.y = (screen.get_height() / 1.75)
 
     tuto = pygame.image.load("assets/picture/tuto.png")
     tuto = pygame.transform.scale(tuto, (265, 81))
     tuto_rectangle = tuto.get_rect()
-    tuto_rectangle.x = (screen.get_width() / 2)    # on utiliser pour savoir si on clique dessus
+    tuto_rectangle.x = (screen.get_width() / 2.55)    # on utiliser pour savoir si on clique dessus
     tuto_rectangle.y = (screen.get_height() / 1.75)
+
+    quitter = pygame.image.load("assets/picture/quitter.png")
+    quitter = pygame.transform.scale(quitter, (265, 81))
+    quitter_rectangle = quitter.get_rect()
+    quitter_rectangle.x = (screen.get_width() / 1.5)    # on utiliser pour savoir si on clique dessus
+    quitter_rectangle.y = (screen.get_height() / 1.75)
 
     tuto_png = pygame.image.load("assets/picture/tuto_png.png")
     tuto_png = pygame.transform.scale(tuto_png, (1000, 394))
@@ -63,6 +69,7 @@ while running:
         screen.blit(image_start, (logo_rectangle_x, logo_rectangle_y))
         screen.blit(start, (start_rectangle.x, start_rectangle.y))
         screen.blit(tuto, (tuto_rectangle.x, tuto_rectangle.y))
+        screen.blit(quitter, (quitter_rectangle.x,  quitter_rectangle.y))
 
     # mettre a jour l'écran
     pygame.display.flip()
@@ -97,6 +104,8 @@ while running:
                 tuto_menu = True
             elif tuto_png_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is True:
                 tuto_menu = False
+            elif quitter_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False:
+                quit()
 
         if event.type == pygame.USEREVENT + 1:
             if jeu.lancement:
