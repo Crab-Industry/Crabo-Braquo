@@ -49,9 +49,8 @@ class Jeu:
         self.quitter = pygame.transform.scale(self.quitter, (331, 101))
         self.quitter_rectangle = self.quitter.get_rect()
 
-        #innitialisation du score à 0
+        # innitialisation du score à 0
         self.score = 0
-
 
     # def apparition_boss(self):
     # boss = Boss(self)
@@ -68,7 +67,7 @@ class Jeu:
         # appliquer l'image du cannon et de la muraille
         screen.blit(self.cannon.image, self.cannon.rect)
         screen.blit(self.muraille.image, self.muraille.rect)
-        screen.blit(self.pause_boutton, (self.pause_boutton_rectangle.x,  self.pause_boutton_rectangle.y))
+        screen.blit(self.pause_boutton, (self.pause_boutton_rectangle.x, self.pause_boutton_rectangle.y))
 
         self.muraille.barre_de_vie(screen)
         self.event.barre_de_temps(screen)
@@ -97,16 +96,15 @@ class Jeu:
             if random.randint(0, 1) == 0:
                 self.appariton_monstre()
 
-        #affichage du timer
+        # affichage du timer
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
         timer_text = font.render(f"Temps : {self.timer.counter}", 1, (0, 0, 0))
         screen.blit(timer_text, (780, 20))
 
-        #affichage du score
+        # affichage du score
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
         timer_text = font.render(f"Score : {self.score}", 1, (0, 0, 0))
         screen.blit(timer_text, (500, 20))
-
 
     def start_jeu(self):
         self.lancement = True
@@ -147,9 +145,5 @@ class Jeu:
         self.pause = False
         self.sound_player.unpause_sound()
 
-    def scoremonstre(self):
-        self.score += 5
-
-    def scoreboss(self):
-        self.score += 50
-
+    def add_score(self, point):
+        self.score = + point
