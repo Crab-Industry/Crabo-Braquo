@@ -1,3 +1,4 @@
+import time
 import pygame
 
 from jeu import Jeu
@@ -60,7 +61,7 @@ while running:
     if jeu.lancement:
         if jeu.pause:
             # Fenêtre de pause à implémenter
-            jeu.pause_update()
+            jeu.pause_update(screen)
         else:
             jeu.update(screen)
     elif tuto_menu:
@@ -73,11 +74,13 @@ while running:
 
     # mettre a jour l'écran
     pygame.display.flip()
+
     # condition pour fermer la fenêtre
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
             pygame.quit()
+            quit()
 
         # detection touche clavier
         elif event.type == pygame.KEYDOWN:
@@ -92,9 +95,9 @@ while running:
                     jeu.pause_in()
                 elif jeu.lancement is True and jeu.pause is True:
                     jeu.pause_out()
-
         elif event.type == pygame.KEYUP:
             jeu.pressed[event.key] = False
+
         # clique de souris
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if start_rectangle.collidepoint(event.pos) and jeu.lancement is False:
@@ -104,9 +107,15 @@ while running:
                 tuto_menu = True
             elif tuto_png_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is True:
                 tuto_menu = False
+            elif jeu.reprendre_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:
+                jeu.pause_out()
+            elif jeu.quitter_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:
+                jeu.game_over(end_game_from_game=False)
+                jeu.pause_out()
             elif quitter_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False:
+                pygame.quit()
                 quit()
 
-        if event.type == pygame.USEREVENT + 1:
+        if event.type == pygame.USEREVENT + 1 and jeu.pause is False:
             if jeu.lancement:
                 jeu.timer.update_time(screen)
