@@ -116,7 +116,6 @@ class Jeu:
             self.monstre.spawnable = True
 
         if self.boss.timer >= self.boss.spawn_rate:
-            print("le boss apparait")
             self.apparition_boss()
             self.boss.timer = 0
 
@@ -163,6 +162,8 @@ class Jeu:
         self.all_monstres = pygame.sprite.Group()
         self.all_boss = pygame.sprite.Group()
         self.muraille.vie = self.muraille.max_vie
+        self.cannon = Cannon(self)
+        self.pressed = {}
         self.timer.reset_time()
 
     def pause_in(self):
