@@ -1,8 +1,20 @@
+"""
+Fichier de la classe Monstre qui contient le crabe
+Image du crabe: "assets/picture/boss_crabe.png"
+"""
 import pygame
 import random
 
 
 class Monstre(pygame.sprite.Sprite):
+    """
+    Classe Monstre qui gère les monstres (crabes)
+    Possède plusieurs fonctions:
+        __init__()
+        mouv_monstre()
+        barre_de_vie()
+        degat_subit()
+    """
     def __init__(self, jeu):
         super().__init__()
         self.jeu = jeu
