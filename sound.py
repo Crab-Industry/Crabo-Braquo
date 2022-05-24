@@ -21,3 +21,6 @@ class Soundplayer:
         else:
             self.son[track].set_volume(0.5)
             self.son[track].play()
+
+    def stop_sound(self, track):
+        self.son[track].stop()
