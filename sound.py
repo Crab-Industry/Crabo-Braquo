@@ -1,6 +1,6 @@
 """
 Fichier de gestion des sons/musiques
-Folder: '/assets/sounds/*'
+Dossier de sons: '/assets/sounds/*'
 """
 
 import pygame
