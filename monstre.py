@@ -39,4 +39,4 @@ class Monstre(pygame.sprite.Sprite):
             # on supprime le crabe quand il a plus de vie
             self.jeu.all_monstres.remove(self)
             # on augmente le score
-            self.jeu.add_score(score=5)
+            self.jeu.add_score(point=5)
