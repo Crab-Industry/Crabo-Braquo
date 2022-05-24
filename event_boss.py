@@ -2,8 +2,10 @@ import pygame
 
 
 class Event:
-    def __init__(self):
+    def __init__(self,jeu):
         self.timer = 0
+        self.jeu = jeu
+
 
     def aug_timer(self):
         self.timer += 1 / 10
