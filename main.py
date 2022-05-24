@@ -18,6 +18,8 @@ icone = pygame.image.load("assets/picture/crabe.png")
 jeu = Jeu()
 
 running = True
+tuto_menu = False
+
 while running:
     # Icone
     pygame.display.set_icon(icone)
@@ -43,8 +45,16 @@ while running:
     tuto_rectangle.x = (screen.get_width() / 2)    # on utiliser pour savoir si on clique dessus
     tuto_rectangle.y = (screen.get_height() / 1.75)
 
+    tuto_png = pygame.image.load("assets/picture/tuto_png.png")
+    tuto_png = pygame.transform.scale(tuto_png, (1000, 394))
+    tuto_png_rectangle = tuto_png.get_rect()
+    tuto_png_rectangle.x = 0
+    tuto_png_rectangle.y = 0
+
     if jeu.lancement:
         jeu.update(screen)
+    elif tuto_menu:
+        screen.blit(tuto_png, (tuto_png_rectangle.x, tuto_png_rectangle.y))
     else:
         screen.blit(image_start, (logo_rectangle_x, logo_rectangle_y))
         screen.blit(start, (start_rectangle.x, start_rectangle.y))
@@ -73,8 +83,10 @@ while running:
             if start_rectangle.collidepoint(event.pos) and jeu.lancement is False:
                 jeu.start_jeu()
                 jeu.sound_player.play_sound("click")
-            elif tuto_rectangle.collidepoint(event.pos) and jeu.lancement is False:
-                pass # implémenter une fenêtre qui montre un png de tuto
+            elif tuto_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False:
+                tuto_menu = True
+            elif tuto_png_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is True:
+                tuto_menu = False
 
         if event.type == pygame.USEREVENT + 1:
             if jeu.lancement:
