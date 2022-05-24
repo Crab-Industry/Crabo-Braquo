@@ -107,6 +107,8 @@ while running:
                 tuto_menu = True
             elif tuto_png_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is True:
                 tuto_menu = False
+            elif jeu.pause_boutton_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is False:
+                jeu.pause_in()
             elif jeu.reprendre_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:
                 jeu.pause_out()
             elif jeu.quitter_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:

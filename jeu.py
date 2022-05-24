@@ -35,6 +35,12 @@ class Jeu:
         # Timer
         self.timer = Timer()
 
+        self.pause_boutton = pygame.image.load("assets/picture/pause_button.png")
+        self.pause_boutton = pygame.transform.scale(self.pause_boutton, (36, 36))
+        self.pause_boutton_rectangle = self.pause_boutton.get_rect()
+        self.pause_boutton_rectangle.x = 930
+        self.pause_boutton_rectangle.y = 12
+
         self.reprendre = pygame.image.load("assets/picture/reprendre.png")
         self.reprendre = pygame.transform.scale(self.reprendre, (331, 101))
         self.reprendre_rectangle = self.reprendre.get_rect()
@@ -58,6 +64,7 @@ class Jeu:
         # appliquer l'image du cannon et de la muraille
         screen.blit(self.cannon.image, self.cannon.rect)
         screen.blit(self.muraille.image, self.muraille.rect)
+        screen.blit(self.pause_boutton, (self.pause_boutton_rectangle.x,  self.pause_boutton_rectangle.y))
 
         self.muraille.barre_de_vie(screen)
         self.event.barre_de_temps(screen)
