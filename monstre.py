@@ -33,7 +33,7 @@ class Monstre(pygame.sprite.Sprite):
     def degat_subit(self, degats):
         self.vie -= degats
         if self.vie <= 0:
-            self.rect.x = 1 - random.randint(0, 300)
+            self.rect.x = 1000 - random.randint(0, 300)
             self.velocite = random.uniform(0.5, 2.0)
             self.vie = self.max_vie
             # on supprime le crabe quand il a plus de vie
