@@ -11,11 +11,12 @@ class Soundplayer:
         self.son = {
             "click": pygame.mixer.Sound("assets/sound/click.ogg"),
             "canon": pygame.mixer.Sound("assets/sound/canon.ogg"),
-            "background_music": pygame.mixer.Sound("assets/sound/background_music.ogg")
+            "background_music": pygame.mixer.Sound("assets/sound/background_music.ogg"),
+            "game_over": pygame.mixer.Sound("assets/sound/game_over.ogg")
         }
 
     def play_sound(self, track):
-        if track == 'background_music':
+        if track == 'background_music' or track == 'game_over':
             self.son[track].set_volume(0.3)
             self.son[track].play(loops=-1)
         else:
