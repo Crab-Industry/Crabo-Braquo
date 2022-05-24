@@ -146,4 +146,4 @@ class Jeu:
         self.sound_player.unpause_sound()
 
     def add_score(self, point):
-        self.score = + point
+        self.score += point
