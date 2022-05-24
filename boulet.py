@@ -35,5 +35,5 @@ class Boulet(pygame.sprite.Sprite):
             self.remove()
             boss.degat_subit(self.cannon.attaque)
         # détruire les boulet sortie de l'écran
-        if self.rect.x > 1000 or self.rect.x < 0 or self.rect.y > 394 or self.rect.y<-50:
+        if self.rect.x > 1000 or self.rect.x < 0 or self.rect.y > 320 or self.rect.y<-50:
             self.remove()
