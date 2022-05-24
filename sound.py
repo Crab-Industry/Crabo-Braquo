@@ -24,3 +24,9 @@ class Soundplayer:
 
     def stop_sound(self, track):
         self.son[track].stop()
+
+    def pause_sound(self):
+        pygame.mixer.pause()
+
+    def unpause_sound(self):
+        pygame.mixer.unpause()
