@@ -14,7 +14,7 @@ class Monstre(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 1001 - random.randint(0, 200)
         self.rect.y = 300
-        self.velocite = random.randint(1, 3)
+        self.velocite = random.randint(1, 6)
         self.spawnable = True
 
     def mouv_monstre(self):
