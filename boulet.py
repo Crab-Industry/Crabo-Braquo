@@ -31,6 +31,9 @@ class Boulet(pygame.sprite.Sprite):
         for monstre in self.cannon.jeu.collision(self, self.cannon.jeu.all_monstres):
             self.remove()
             monstre.degat_subit(self.cannon.attaque)
+        for boss in self.cannon.jeu.collision(self, self.cannon.jeu.all_boss):
+            self.remove()
+            boss.degat_subit(self.cannon.attaque)
         # détruire les boulet sortie de l'écran
         if self.rect.x > 1000 or self.rect.x < 0 or self.rect.y > 394 or self.rect.y<-50:
             self.remove()
