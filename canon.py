@@ -3,13 +3,12 @@ import pygame
 from boulet import Boulet
 
 
-# Class Canon
-class Cannon(pygame.sprite.Sprite):
+class Canon(pygame.sprite.Sprite):
     def __init__(self, jeu):
         super().__init__()
         self.attaque = 50
         self.velocite = 10
-        self.image = pygame.image.load("assets/picture/cannon2.png")
+        self.image = pygame.image.load("assets/picture/canon.png")
         self.rect = self.image.get_rect()
         self.rect.x = 140
         self.rect.y = 120
@@ -17,17 +16,17 @@ class Cannon(pygame.sprite.Sprite):
         self.angle = 0
         self.all_boulet = pygame.sprite.Group()
         self.jeu = jeu
-        self.angle_cannon = -20
+        self.angle_canon = -20
 
     def rotate1(self):
         self.angle -= 1
-        self.angle_cannon += 1
+        self.angle_canon += 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def rotate2(self):
         self.angle += 1
-        self.angle_cannon -= 1
+        self.angle_canon -= 1
         self.image = pygame.transform.rotozoom(self.origin_image, self.angle, 1)
         self.rect = self.image.get_rect(center=self.rect.center)
 
