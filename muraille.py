@@ -43,8 +43,12 @@ class Muraille(pygame.sprite.Sprite):
         Permet d'afficher la barre de vie de la muraille
         Dessiné par pygame.draw.rect()
 
-        position: barre de self.vie
-        position2: barre de self.max_vie
+        :var:
+            position: barre de self.vie
+            position2: barre de self.max_vie
+
+        :param:
+            surface: Screen initialisé par pygame
         """
         position = [self.rect.x, self.rect.y - 50, self.vie, 8]  # position en x,y la taille et la hauteur
         position2 = [self.rect.x, self.rect.y - 50, self.max_vie, 8]
