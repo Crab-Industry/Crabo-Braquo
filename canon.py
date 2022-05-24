@@ -23,8 +23,8 @@ class Canon(pygame.sprite.Sprite):
         --------------------
         self.jeu: Classe Jeu() déjà initialisé
         self.attaque: dégâts d'attaque du crabe
-        self.image: Image de la muraille, puis transformée en dimension 40*40
-        self.rect: masque_rectangle du crabe
+        self.image: Image de la canon, puis transformée en dimension 40*40
+        self.rect: masque_rectangle du canon
         self.rect.x: position x
         self.rect.y: position y
         self.velocite: vitesse du crabe
