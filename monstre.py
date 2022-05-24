@@ -47,10 +47,10 @@ class Monstre(pygame.sprite.Sprite):
         """
         Fonction: mouv_monstre()
         --------------------
-        Permet le déplacement de monstre et s'arrête si une colision avec la muraille
+        Permet le déplacement de monstre et s'arrête si une collision avec la muraille
         """
         # Condition qui permet d'avancer le crabe
-        # Détecte la colision avec le crabe
+        # Détecte la collision avec le crabe
         if not self.jeu.collision(self, self.jeu.all_murailles):
             self.rect.x -= self.velocite
         else:  # Le monstre est devant la muraille, il va pouvoir faire des dégâts
