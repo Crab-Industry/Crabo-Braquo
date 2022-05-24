@@ -27,20 +27,28 @@ while running:
 
     # appliquer l'image de lancement du jeu le bouton start aussi
     image_start = pygame.image.load("assets/picture/CraboBraquo.png")
-    image_start = pygame.transform.scale(image_start, (800, 225))
+    image_start = pygame.transform.scale(image_start, (533, 165))
+    logo_rectangle_x = (screen.get_width() / 4)
+    logo_rectangle_y = (screen.get_height() / 9)
 
-    start = pygame.image.load("assets/picture/start.png")
-    start = pygame.transform.scale(start, (200, 200))
+    start = pygame.image.load("assets/picture/start2.png")
+    start = pygame.transform.scale(start, (265, 81))
     start_rectangle = start.get_rect()  # on recupère le rectangle
-    # on utiliser pour savoir si on clique dessus
-    start_rectangle.x = (screen.get_width() / 2.4)
-    start_rectangle.y = 180
+    start_rectangle.x = (screen.get_width() / 5)    # on utiliser pour savoir si on clique dessus
+    start_rectangle.y = (screen.get_height() / 1.75)
+
+    tuto = pygame.image.load("assets/picture/tuto.png")
+    tuto = pygame.transform.scale(tuto, (265, 81))
+    tuto_rectangle = tuto.get_rect()
+    tuto_rectangle.x = (screen.get_width() / 2)    # on utiliser pour savoir si on clique dessus
+    tuto_rectangle.y = (screen.get_height() / 1.75)
 
     if jeu.lancement:
         jeu.update(screen)
     else:
-        screen.blit(image_start, (screen.get_width() / 8, 30))
+        screen.blit(image_start, (logo_rectangle_x, logo_rectangle_y))
         screen.blit(start, (start_rectangle.x, start_rectangle.y))
+        screen.blit(tuto, (tuto_rectangle.x, tuto_rectangle.y))
 
     # mettre a jour l'écran
     pygame.display.flip()
@@ -65,8 +73,9 @@ while running:
             if start_rectangle.collidepoint(event.pos) and jeu.lancement is False:
                 jeu.start_jeu()
                 jeu.sound_player.play_sound("click")
+            elif tuto_rectangle.collidepoint(event.pos) and jeu.lancement is False:
+                pass # implémenter une fenêtre qui montre un png de tuto
 
         if event.type == pygame.USEREVENT + 1:
             if jeu.lancement:
                 jeu.timer.update_time(screen)
-

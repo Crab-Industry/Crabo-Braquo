@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from boss import Boss
 from cannon import Cannon
@@ -39,8 +40,7 @@ class Jeu:
 
     def appariton_monstre(self):
         monstre = Monstre(self)
-        for i in range(0, 3):
-            self.all_monstres.add(monstre)
+        self.all_monstres.add(monstre)
 
     def collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
@@ -72,6 +72,11 @@ class Jeu:
         elif self.pressed.get(pygame.K_LEFT):
             self.cannon.rotate2()
 
+        # Gestion de spawn des mobs en fonction du temps
+        if self.timer.counter % 5 == 0:
+            if random.randint(0, 1) == 0:
+                self.appariton_monstre()
+
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
         timer_text = font.render(f"Temps : {self.timer.counter}", 1, (0, 0, 0))
         screen.blit(timer_text, (820, 20))
@@ -87,4 +92,5 @@ class Jeu:
         self.all_monstres = pygame.sprite.Group()
         self.muraille.vie = self.muraille.max_vie
         self.lancement = False
+        self.sound_player.stop_sound('background_music')
         self.timer.reset_time()
