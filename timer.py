@@ -9,10 +9,13 @@ class Timer:
         self.clock = pygame.time.Clock()
         pygame.time.set_timer(self.mytimerevent, 1000)
 
-    def update_time(self, screen):
+    def update_time(self):
         # Timer
         self.counter += 1
         self.clock.tick(60)
 
     def reset_time(self):
         self.counter = 0
+
+    def add_clock(self):
+        self.counter += 1

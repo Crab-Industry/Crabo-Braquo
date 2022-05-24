@@ -120,4 +120,4 @@ while running:
 
         if event.type == pygame.USEREVENT + 1 and jeu.pause is False:
             if jeu.lancement:
-                jeu.timer.update_time(screen)
+                jeu.timer.update_time()

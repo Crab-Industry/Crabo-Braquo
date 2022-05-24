@@ -17,9 +17,9 @@ class Soundplayer:
     def play_sound(self, track):
         if track == 'background_music':
             self.son[track].set_volume(0.3)
-            self.son[track].play()
+            self.son[track].play(loops=-1)
         else:
-            self.son[track].set_volume(0.5)
+            self.son[track].set_volume(0.1)
             self.son[track].play()
 
     def stop_sound(self, track):
