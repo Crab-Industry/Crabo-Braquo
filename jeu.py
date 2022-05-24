@@ -99,8 +99,7 @@ class Jeu:
         # Gestion de spawn des mobs en fonction du temps
         if self.timer.counter % 5 == 0:
             for i in range(0, random.randint(0, 5)):
-                #self.appariton_monstre()
-                pass
+                self.appariton_monstre()
             self.timer.counter += 0.1
             self.monstre.spawnable = False
 
