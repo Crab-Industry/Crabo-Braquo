@@ -58,7 +58,14 @@ while running:
     tuto_png_rectangle.x = 0
     tuto_png_rectangle.y = 0
 
-    if jeu.lancement:
+    if jeu.muraille.vie <= 0:
+        jeu.game_over_stats(screen)
+        if jeu.game_over_statement is True:
+            jeu.game_over_stats(screen)
+            jeu.lancement = False
+        elif jeu.game_over_statement is False:
+            jeu.game_over_reset()
+    elif jeu.lancement:
         if jeu.pause:
             # Fenêtre de pause à implémenter
             jeu.pause_update(screen)
@@ -90,31 +97,39 @@ while running:
                 if jeu.lancement is True and jeu.pause is False:
                     jeu.cannon.lancer_boulet()
                     jeu.sound_player.play_sound("canon")
+                elif jeu.game_over_statement is True:
+                    jeu.game_over_statement = False
             elif event.key == pygame.K_ESCAPE:
-                if jeu.lancement is True and jeu.pause is False:
+                if jeu.lancement is True and jeu.pause is False and jeu.game_over_statement is False:
                     jeu.pause_in()
                 elif jeu.lancement is True and jeu.pause is True:
                     jeu.pause_out()
+                elif jeu.lancement is False and jeu.pause is False and jeu.game_over_statement is True:
+                    jeu.game_over_statement = False
+                    jeu.lancement = False
         elif event.type == pygame.KEYUP:
             jeu.pressed[event.key] = False
 
         # clique de souris
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if start_rectangle.collidepoint(event.pos) and jeu.lancement is False:
+            if start_rectangle.collidepoint(event.pos) and jeu.lancement is False and jeu.game_over_statement is False:
                 jeu.start_jeu()
                 jeu.sound_player.play_sound("click")
-            elif tuto_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False:
+            elif tuto_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False and jeu.game_over_statement is False:
                 tuto_menu = True
             elif tuto_png_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is True:
                 tuto_menu = False
-            elif jeu.pause_boutton_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is False:
+            elif jeu.pause_boutton_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is False and jeu.game_over_statement is False:
                 jeu.pause_in()
             elif jeu.reprendre_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:
                 jeu.pause_out()
             elif jeu.quitter_rectangle.collidepoint(event.pos) and jeu.lancement is True and jeu.pause is True:
-                jeu.game_over(end_game_from_game=False)
                 jeu.pause_out()
-            elif quitter_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False:
+                jeu.game_over_reset()
+            elif jeu.game_over_png_rectangle.collidepoint(event.pos) and jeu.game_over_statement is True:
+                jeu.game_over_statement = False
+                jeu.lancement = False
+            elif quitter_rectangle.collidepoint(event.pos) and jeu.lancement is False and tuto_menu is False and jeu.game_over_statement is False:
                 pygame.quit()
                 quit()
 

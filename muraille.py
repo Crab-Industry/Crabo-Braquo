@@ -20,7 +20,4 @@ class Muraille(pygame.sprite.Sprite):
         pygame.draw.rect(surface, (122, 246, 18), position)  # barre principale
 
     def degat_subit(self, degats):
-        if self.vie - degats > degats:
-            self.vie -= degats
-        else:
-            self.jeu.game_over(True)
+        self.vie -= degats

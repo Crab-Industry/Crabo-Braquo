@@ -53,6 +53,10 @@ class Jeu:
         self.quitter_rectangle = self.quitter.get_rect()
 
         self.king_crab = pygame.image.load("assets/picture/King_Crab.png")
+        self.king_crab = pygame.transform.scale(self.king_crab, (48, 48))
+
+        self.game_over_png = pygame.image.load("assets/picture/game over.png")
+        self.game_over_png_rectangle = self.game_over_png.get_rect()
 
         # innitialisation du score à 0
         self.score = 0
@@ -90,6 +94,8 @@ class Jeu:
         # même chose pour les monstre
         self.all_monstres.draw(screen)
         self.all_boss.draw(screen)
+
+        screen.blit(self.king_crab, (425, 8))
 
         # rotation
         if self.pressed.get(pygame.K_RIGHT):
@@ -130,15 +136,33 @@ class Jeu:
         # Musique de fond
         self.sound_player.play_sound('background_music')
 
-    def game_over(self, end_game_from_game):
-        if end_game_from_game:
-            pass  # implémenter l'image de game over
+    def game_over_stats(self, screen):
+        if self.game_over_statement is False and self.lancement is True:
+            self.game_over_statement = True
+            self.sound_player.stop_sound('background_music')
+            self.sound_player.play_sound('game_over')
+        screen.blit(self.game_over_png, (0, 0))
 
-        # on relance le jeu
-        self.all_monstres = pygame.sprite.Group()
-        self.muraille.vie = self.muraille.max_vie
+        font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
+        timer_text = font.render(f"Temps : {int(self.timer.counter)}s", 1, (0, 0, 0))
+        screen.blit(timer_text, ((screen.get_width() / 1.75), (screen.get_height() / 1.25)))
+
+        timer_text = font.render(f"Score : {self.score}", 1, (0, 0, 0))
+        screen.blit(timer_text, ((screen.get_width() / 3), (screen.get_height() / 1.25)))
+
+        font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
+        timer_text = font.render(f"Cliquez pour quitter", 1, (0, 0, 0))
+        screen.blit(timer_text, ((screen.get_width() / 2.75), (screen.get_height() / 1.1)))
+
+    def game_over_reset(self):
         self.lancement = False
+        self.game_over_statement = False
+        self.pause = False
         self.sound_player.stop_sound('background_music')
+        self.sound_player.stop_sound('game_over')
+        self.all_monstres = pygame.sprite.Group()
+        self.all_boss = pygame.sprite.Group()
+        self.muraille.vie = self.muraille.max_vie
         self.timer.reset_time()
 
     def pause_in(self):
