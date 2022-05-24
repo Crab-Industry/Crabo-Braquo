@@ -16,6 +16,20 @@ class Monstre(pygame.sprite.Sprite):
         degat_subit()
     """
     def __init__(self, jeu):
+        """
+        Fonction: __init__
+        --------------------
+        self.jeu: Classe Jeu() déjà initialisé
+        self.attaque: dégâts d'attaque du crabe
+        self.vie: HP du crabe
+        self.max_vie: HP_max du crabe
+        self.image: Image de la muraille, puis transformée en dimension 40*40
+        self.rect: masque_rectangle du crabe
+        self.rect.x: position x
+        self.rect.y: position y
+        self.velocite: vitesse du crabe
+        self.spawnable: Bool de si le mob est spawnable ou non (gérée par jeu.py)
+        """
         super().__init__()
         self.jeu = jeu
         self.attaque = 0.3
@@ -30,20 +44,49 @@ class Monstre(pygame.sprite.Sprite):
         self.spawnable = True
 
     def mouv_monstre(self):
-        # verification pour que le monstre ne puisse avancer
-        # quand il entre en collision avec la muraille
+        """
+        Fonction: mouv_monstre()
+        --------------------
+        Permet le déplacement de monstre et s'arrête si une colision avec la muraille
+        """
+        # Condition qui permet d'avancer le crabe
+        # Détecte la colision avec le crabe
         if not self.jeu.collision(self, self.jeu.all_murailles):
             self.rect.x -= self.velocite
-        else:  # le monstre est devant la murailles, il va pouvoir faire des degats
+        else:  # Le monstre est devant la muraille, il va pouvoir faire des dégâts
             self.jeu.muraille.degat_subit(self.attaque)
 
     def barre_de_vie(self, surface):
-        position = [self.rect.x - 4, self.rect.y - 10, self.vie / 2, 3]  # position en x,y la taille et la hauteur
+        """
+        Fonction: barre_de_vie
+        --------------------
+        Permet d'afficher la barre de vie du crabe
+        Dessiné par pygame.draw.rect()
+
+        :var:
+            position: barre de self.vie
+            position2: barre de self.max_vie
+
+        :param:
+            surface: Screen initialisé par pygame
+        """
+        position = [self.rect.x - 4, self.rect.y - 10, self.vie / 2, 3]
         position2 = [self.rect.x - 4, self.rect.y - 10, self.max_vie / 2, 3]
-        pygame.draw.rect(surface, (115, 115, 115), position2)  # barre en arrière plan comme ça on voit la vie max
-        pygame.draw.rect(surface, (122, 246, 18), position)  # barre principale
+
+        # On dessine d'abord max_vie pour qu'il soit en arrière plan
+        pygame.draw.rect(surface, (115, 115, 115), position2)
+        pygame.draw.rect(surface, (122, 246, 18), position)
 
     def degat_subit(self, degats):
+        """
+        Fonction: degat_subit
+        --------------------
+        Fonction qui permet la soustraction de la vie en fonction de dégâts
+        Reset le mob s'il meurt
+
+        :param:
+            degats: (int) dégâts infligés au crabe
+        """
         self.vie -= degats
         if self.vie <= 0:
             self.rect.x = 1000 - random.randint(0, 300)
