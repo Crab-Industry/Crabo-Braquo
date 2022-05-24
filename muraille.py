@@ -9,6 +9,10 @@ class Muraille(pygame.sprite.Sprite):
     """
     Classe Muraille
     Muraille du jeu
+    Possède plusieurs fonctions:
+        __init__()
+        barre_de_vie()
+        degat_subit()
     """
     def __init__(self, jeu):
         """
