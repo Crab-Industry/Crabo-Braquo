@@ -52,7 +52,11 @@ while running:
     tuto_png_rectangle.y = 0
 
     if jeu.lancement:
-        jeu.update(screen)
+        if jeu.pause:
+            # Fenêtre de pause à implémenter
+            jeu.pause_update()
+        else:
+            jeu.update(screen)
     elif tuto_menu:
         screen.blit(tuto_png, (tuto_png_rectangle.x, tuto_png_rectangle.y))
     else:
@@ -73,9 +77,15 @@ while running:
             jeu.pressed[event.key] = True
             # si la barre espace est appuyer on lance un boulet
             if event.key == pygame.K_SPACE:
-                if jeu.lancement is True:
+                if jeu.lancement is True and jeu.pause is False:
                     jeu.cannon.lancer_boulet()
                     jeu.sound_player.play_sound("canon")
+            elif event.key == pygame.K_ESCAPE:
+                if jeu.lancement is True and jeu.pause is False:
+                    jeu.pause_in()
+                elif jeu.lancement is True and jeu.pause is True:
+                    jeu.pause_out()
+
         elif event.type == pygame.KEYUP:
             jeu.pressed[event.key] = False
         # clique de souris

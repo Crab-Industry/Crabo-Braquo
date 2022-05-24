@@ -14,6 +14,7 @@ class Jeu:
     def __init__(self):
         # Start du jeu
         self.lancement = False
+        self.pause = False
 
         # on fait un groupe pour murailles même si ya qu'une
         # muraille car on est obliger pour la fonction collision
@@ -94,3 +95,14 @@ class Jeu:
         self.lancement = False
         self.sound_player.stop_sound('background_music')
         self.timer.reset_time()
+
+    def pause_in(self):
+        self.pause = True
+        self.sound_player.pause_sound()
+
+    def pause_update(self):
+        pass
+
+    def pause_out(self):
+        self.pause = False
+        self.sound_player.unpause_sound()
