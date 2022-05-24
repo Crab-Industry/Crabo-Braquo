@@ -23,4 +23,4 @@ class Muraille(pygame.sprite.Sprite):
         if self.vie - degats > degats:
             self.vie -= degats
         else:
-            self.jeu.game_over()
+            self.jeu.game_over(True)
