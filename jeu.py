@@ -3,11 +3,11 @@ import random
 
 from boss import Boss
 from cannon import Cannon
-from event_boss import Event
 from monstre import Monstre
 from muraille import Muraille
 from sound import Soundplayer
 from timer import Timer
+
 
 
 class Jeu:
@@ -25,11 +25,14 @@ class Jeu:
         # même chose qu'on a fait avec les boulets on crée un
         # groupe pour pouvoir en avoir plusieur
         self.all_monstres = pygame.sprite.Group()
+        self.all_boss = pygame.sprite.Group()
+
+        self.boss=Boss(self)
         self.pressed = {
         }
         self.cannon = Cannon(self)
-        self.event = Event()
-        # self.all_boss=pygame.sprite.Group
+
+
         # Implémentatino de la classe son
         self.sound_player = Soundplayer()
         # Timer
@@ -52,9 +55,8 @@ class Jeu:
         # innitialisation du score à 0
         self.score = 0
 
-    # def apparition_boss(self):
-    # boss = Boss(self)
-    # self.all_boss.add(boss)
+
+
 
     def appariton_monstre(self):
         monstre = Monstre(self)
@@ -70,7 +72,7 @@ class Jeu:
         screen.blit(self.pause_boutton, (self.pause_boutton_rectangle.x, self.pause_boutton_rectangle.y))
 
         self.muraille.barre_de_vie(screen)
-        self.event.barre_de_temps(screen)
+        self.boss.barre_de_temps(screen)
         # On recupere les boulets du cannon
         for boulet in self.cannon.all_boulet:
             boulet.mouvement()
@@ -78,11 +80,15 @@ class Jeu:
         for monstre in self.all_monstres:
             monstre.mouv_monstre()
             monstre.barre_de_vie(screen)
+        for boss in self.all_boss:
+            boss.mouv_boss()
+            boss.barre_de_vie(screen)
 
         # groupe du boulet pour qu'on le voit
         self.cannon.all_boulet.draw(screen)
         # même chose pour les monstre
         self.all_monstres.draw(screen)
+        self.all_boss.draw(screen)
 
         # rotation
         if self.pressed.get(pygame.K_RIGHT):
