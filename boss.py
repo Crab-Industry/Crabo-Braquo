@@ -15,7 +15,7 @@ class Boss(pygame.sprite.Sprite):
         self.rect.x = 1001
         self.rect.y = 230
         self.velocite = 1
-        self.timer = 1000
+        self.timer = 0
         self.spawn_rate = 30
 
     def mouv_boss(self):
