@@ -9,7 +9,6 @@ from sound import Soundplayer
 from timer import Timer
 
 
-
 class Jeu:
     def __init__(self):
         # Start du jeu
@@ -25,13 +24,13 @@ class Jeu:
         # même chose qu'on a fait avec les boulets on crée un
         # groupe pour pouvoir en avoir plusieur
         self.all_monstres = pygame.sprite.Group()
+        self.monstre = Monstre(self)
         self.all_boss = pygame.sprite.Group()
 
-        self.boss=Boss(self)
+        self.boss = Boss(self)
         self.pressed = {
         }
         self.cannon = Cannon(self)
-
 
         # Implémentatino de la classe son
         self.sound_player = Soundplayer()
@@ -55,12 +54,11 @@ class Jeu:
         # innitialisation du score à 0
         self.score = 0
 
-
-
-
     def appariton_monstre(self):
-        monstre = Monstre(self)
-        self.all_monstres.add(monstre)
+        self.all_monstres.add(Monstre(self))
+
+    def apparition_boss(self):
+        self.all_boss.add(Boss(self))
 
     def collision(self, sprite, group):
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
@@ -97,14 +95,27 @@ class Jeu:
         elif self.pressed.get(pygame.K_LEFT):
             self.cannon.rotate2()
 
+        print(self.timer.counter, self.monstre.spawnable)
         # Gestion de spawn des mobs en fonction du temps
         if self.timer.counter % 5 == 0:
-            if random.randint(0, 1) == 0:
-                self.appariton_monstre()
+            for i in range(0, random.randint(0, 5)):
+                #self.appariton_monstre()
+                pass
+            self.timer.counter += 0.1
+            self.monstre.spawnable = False
+
+        if int(self.timer.counter) % 3 == 0 and self.monstre.spawnable is False:
+            self.timer.counter = int(self.timer.counter)
+            self.monstre.spawnable = True
+
+        if self.boss.timer >= self.boss.spawn_rate:
+            print("le boss apparait")
+            self.apparition_boss()
+            self.boss.timer = 0
 
         # affichage du timer
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
-        timer_text = font.render(f"Temps : {self.timer.counter}", 1, (0, 0, 0))
+        timer_text = font.render(f"Temps : {int(self.timer.counter)}", 1, (0, 0, 0))
         screen.blit(timer_text, (780, 20))
 
         # affichage du score
@@ -144,7 +155,7 @@ class Jeu:
         screen.blit(self.quitter, (self.quitter_rectangle.x, self.quitter_rectangle.y))
 
         font = pygame.font.Font("assets/font/TheNextFont.ttf", 25)
-        timer_text = font.render(f"Temps actuel : {self.timer.counter}", True, (0, 0, 0))
+        timer_text = font.render(f"Temps actuel : {int(self.timer.counter)}", True, (0, 0, 0))
         screen.blit(timer_text, (screen.get_width() / 2.85, (screen.get_height() / 6.5)))
 
     def pause_out(self):
