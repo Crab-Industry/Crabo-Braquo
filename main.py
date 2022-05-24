@@ -95,7 +95,7 @@ while running:
             # si la barre espace est appuyer on lance un boulet
             if event.key == pygame.K_SPACE:
                 if jeu.lancement is True and jeu.pause is False:
-                    jeu.cannon.lancer_boulet()
+                    jeu.canon.lancer_boulet()
                     jeu.sound_player.play_sound("canon")
                 elif jeu.game_over_statement is True:
                     jeu.game_over_statement = False

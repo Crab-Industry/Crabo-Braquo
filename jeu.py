@@ -2,7 +2,7 @@ import pygame
 import random
 
 from boss import Boss
-from cannon import Cannon
+from canon import Canon
 from monstre import Monstre
 from muraille import Muraille
 from sound import Soundplayer
@@ -31,7 +31,7 @@ class Jeu:
         self.boss = Boss(self)
         self.pressed = {
         }
-        self.cannon = Cannon(self)
+        self.canon = Canon(self)
 
         # Implémentatino de la classe son
         self.sound_player = Soundplayer()
@@ -71,15 +71,15 @@ class Jeu:
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def update(self, screen):
-        # appliquer l'image du cannon et de la muraille
-        screen.blit(self.cannon.image, self.cannon.rect)
+        # appliquer l'image du canon et de la muraille
+        screen.blit(self.canon.image, self.canon.rect)
         screen.blit(self.muraille.image, self.muraille.rect)
         screen.blit(self.pause_boutton, (self.pause_boutton_rectangle.x, self.pause_boutton_rectangle.y))
 
         self.muraille.barre_de_vie(screen)
         self.boss.barre_de_temps(screen)
-        # On recupere les boulets du cannon
-        for boulet in self.cannon.all_boulet:
+        # On recupere les boulets du canon
+        for boulet in self.canon.all_boulet:
             boulet.mouvement()
         # même chose on récupere les monstres
         for monstre in self.all_monstres:
@@ -90,7 +90,7 @@ class Jeu:
             boss.barre_de_vie(screen)
 
         # groupe du boulet pour qu'on le voit
-        self.cannon.all_boulet.draw(screen)
+        self.canon.all_boulet.draw(screen)
         # même chose pour les monstre
         self.all_monstres.draw(screen)
         self.all_boss.draw(screen)
@@ -99,10 +99,10 @@ class Jeu:
 
         # rotation
         if self.pressed.get(pygame.K_RIGHT):
-            self.cannon.rotate1()
+            self.canon.rotate1()
 
         elif self.pressed.get(pygame.K_LEFT):
-            self.cannon.rotate2()
+            self.canon.rotate2()
 
         # Gestion de spawn des mobs en fonction du temps
         if self.timer.counter % 5 == 0:
@@ -162,7 +162,7 @@ class Jeu:
         self.all_monstres = pygame.sprite.Group()
         self.all_boss = pygame.sprite.Group()
         self.muraille.vie = self.muraille.max_vie
-        self.cannon = Cannon(self)
+        self.canon = Canon (self)
         self.pressed = {}
         self.timer.reset_time()
 
