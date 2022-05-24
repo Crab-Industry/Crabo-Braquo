@@ -1,3 +1,6 @@
+"""
+Fichier de la classe Jeu qui gère le jeu
+"""
 import pygame
 import random
 
@@ -10,8 +13,24 @@ from timer import Timer
 
 
 class Jeu:
+    """
+    Classe jeu qui gère le contrôle du jeu.
+    Possède plusieurs fonctions:
+        __init__()
+        apparition_monstre()
+        apparition_boss()
+        collision()
+        update()
+        start_jeu()
+        game_over_stats()
+        game_over_reset()
+        pause_in()
+        pause_update()
+        pause_out()
+        add_score()
+    """
     def __init__(self):
-        # Start du jeu
+        # Statements
         self.lancement = False
         self.pause = False
         self.game_over_statement = False
@@ -61,16 +80,37 @@ class Jeu:
         # innitialisation du score à 0
         self.score = 0
 
-    def appariton_monstre(self):
+    def apparition_monstre(self):
+        """
+        Fonction: apparition_monstre
+        --------------------
+        Génère l'apparition de monstre
+        """
         self.all_monstres.add(Monstre(self))
 
     def apparition_boss(self):
+        """
+        Fonction: apparition_boss
+        --------------------
+        Génère l'apparition de boss
+        """
         self.all_boss.add(Boss(self))
 
     def collision(self, sprite, group):
+        """
+        Fonction: collision
+        --------------------
+        :return:
+            détection de collison avec un sprite
+        """
         return pygame.sprite.spritecollide(sprite, group, False, pygame.sprite.collide_mask)
 
     def update(self, screen):
+        """
+        Fonction: update
+        --------------------
+        Permet la mise à jour de la fenêtre avec l'action de chaque entité
+        """
         # appliquer l'image du canon et de la muraille
         screen.blit(self.canon.image, self.canon.rect)
         screen.blit(self.muraille.image, self.muraille.rect)
@@ -107,7 +147,7 @@ class Jeu:
         # Gestion de spawn des mobs en fonction du temps
         if self.timer.counter % 5 == 0:
             for i in range(0, random.randint(0, 2 * (1 + (self.timer.counter // 30)))):
-                self.appariton_monstre()
+                self.apparition_monstre()
             self.timer.counter += 0.1
             self.monstre.spawnable = False
 
@@ -130,12 +170,22 @@ class Jeu:
         screen.blit(timer_text, (500, 20))
 
     def start_jeu(self):
+        """
+        Fonction: start_jeu
+        --------------------
+        Débute le jeu
+        """
         self.lancement = True
-        self.appariton_monstre()
+        self.apparition_monstre()
         # Musique de fond
         self.sound_player.play_sound('background_music')
 
     def game_over_stats(self, screen):
+        """
+        Fonction: game_over_stats
+        --------------------
+        Lance la fenêtre de game_over avec les stats
+        """
         if self.game_over_statement is False and self.lancement is True:
             self.game_over_statement = True
             self.sound_player.stop_sound('background_music')
@@ -154,6 +204,11 @@ class Jeu:
         screen.blit(timer_text, ((screen.get_width() / 2.75), (screen.get_height() / 1.1)))
 
     def game_over_reset(self):
+        """
+        Fonction: game_over_reset
+        --------------------
+        Permet le reset des variables des objets et relance le joueur au menu principal
+        """
         self.lancement = False
         self.game_over_statement = False
         self.pause = False
@@ -167,10 +222,20 @@ class Jeu:
         self.timer.reset_time()
 
     def pause_in(self):
+        """
+        Fonction: pause_in
+        --------------------
+        Met en pause le jeu
+        """
         self.pause = True
         self.sound_player.pause_sound()
 
     def pause_update(self, screen):
+        """
+        Fonction: pause_update
+        --------------------
+        Permet la mise à jour de la fenêtre de pause
+        """
         self.reprendre_rectangle.x = (screen.get_width() / 2.85)  # on utiliser pour savoir si on clique dessus
         self.reprendre_rectangle.y = (screen.get_height() / 4)
 
@@ -189,8 +254,18 @@ class Jeu:
         screen.blit(timer_text, (screen.get_width() / 3, (screen.get_height() / 6.5)))
 
     def pause_out(self):
+        """
+        Fonction: pause_out
+        --------------------
+        Reprends le jeu
+        """
         self.pause = False
         self.sound_player.unpause_sound()
 
     def add_score(self, point):
+        """
+        Fonction: add_score
+        --------------------
+        Permet l'addition de score en fonction d'entités tuées
+        """
         self.score += point
