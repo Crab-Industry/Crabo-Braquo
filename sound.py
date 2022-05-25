@@ -34,8 +34,11 @@ class Soundplayer:
         :param:
             track: (str) musique présent dans Soundplayer
         """
-        if track == 'background_music' or track == 'game_over':
+        if track == 'background_music':
             self.son[track].set_volume(0.3)
+            self.son[track].play(loops=-1)
+        elif track == 'game_over':
+            self.son[track].set_volume(0.7)
             self.son[track].play(loops=-1)
         else:
             self.son[track].set_volume(0.1)
