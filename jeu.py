@@ -220,6 +220,8 @@ class Jeu:
         self.canon = Canon (self)
         self.pressed = {}
         self.timer.reset_time()
+        self.score = 0
+        self.boss.timer = 0
 
     def pause_in(self):
         """
